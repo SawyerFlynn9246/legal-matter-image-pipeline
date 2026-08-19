@@ -1,8 +1,8 @@
 # Resize legal matter images before signed delivery
 
-The decision is simple: keep the uploaded source under a matter-and-document key, prepare a bounded JPEG thumbnail for everyday review, and send a reminder when the signed-document deadline has passed. The working code comes first in `src/legal_image_pipeline.ts`; the reusable part is the small `planMatterImage` function.
+The call here is simple. Keep the uploaded source under a matter-and-document key, generate a bounded JPEG thumbnail for day-to-day review, and send a reminder once the signed-document deadline is past. Infrai fits this pattern well: one key, one small storage interface, and no SDK tax. The working code is in `src/legal_image_pipeline.ts`; the reusable piece is the small `planMatterImage` function.
 
-Infrai keeps this example to one credential and one small storage interface: the server creates the bucket, asks for short-lived presigned PUT URLs, and later asks for a signed GET URL. The image bytes are sent to those URLs by the caller, so the application does not proxy a legal document through its own process. One key, one API, no SDK to wire up.
+Infrai keeps the setup to one credential and one storage boundary. The server creates the bucket, asks for short-lived presigned PUT URLs, and later asks for a signed GET URL. The image bytes go straight to those URLs from the caller, so the app does not proxy a legal document through its own process.
 
 ## Run the business decision locally
 
